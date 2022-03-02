@@ -2,7 +2,6 @@
   text-align: center;
   min-height: 100vh;
   display: flex;
-
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -26,6 +25,10 @@
   }
 }
 
+/*
+  комменты я бы урал
+  И придерживался стиля camelCase, удобнее импортировать как по мне
+ */
 .App-header {
   /*background-color: #282c34;*/
 
@@ -33,6 +36,7 @@
   margin-top: 20vh;
 }
 
+/* Цвета бы вынести куда-то например css variables */
 .App-link {
   color: #61dafb;
 }
@@ -50,6 +54,7 @@
   color: black;
   font-size: unset;
 }
+/* color: gray; в rgb формат*/
 .App-footer-link:visited {
   color: gray;
   opacity: 0.5;

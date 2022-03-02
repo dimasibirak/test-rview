@@ -5,6 +5,15 @@ export default configureStore({
         list: (state = {todos: []}, action) => {
             switch (action.type) {
                 case 'ADD_TODO': {
+                    /**
+                     * review
+                     * Можно так чтоб в оодном стиле
+                     *
+                     * return {
+                     *     ...state,
+                     *     todos: [...state.todos, action.payload]
+                     * }
+                     */
                     const newState = state;
                     newState.todos.push(action.payload);
                     return newState;
@@ -12,6 +21,14 @@ export default configureStore({
                 case 'REMOVE_TODO': {
                     return {
                         ...state,
+                        /**
+                         * review
+                         * any убрать и протайпить
+                         *
+                         * index !== action.payload
+                         * Странная конструкция, index это number, action.payload это обьект,
+                         * неверная логическая конструкция
+                         */
                         todos: state.todos.filter((t: any, index: number) => index !== action.payload),
                     };
                 }
