@@ -5,7 +5,11 @@ import UserSelect from '../UserSelect';
 import { connect } from 'react-redux';
 import styles from './MainApp.module.css';
 
-
+/**
+ * review
+ * Вынес бы в шаред, много где он нужен
+ *
+ */
 type Todo = {
     title: string,
     user?: number,
@@ -17,10 +21,21 @@ type MainAppProps = {
     addTodo: (t: Todo) => void,
     changeTodo: (todos: Todo[]) => void,
 }
+
+/**
+ * review
+ * в конце типа есть ;
+ * в других метсах нет, надо бы к единому стилю
+ *
+ */
 type MainAppState = {
     todoTitle: string
 };
 
+/**
+ * review
+ * отрефачить бы в функциональный компонент
+ */
 class Index extends React.Component<MainAppProps, MainAppState> {
     constructor(props: MainAppProps) {
         super(props);
@@ -30,12 +45,20 @@ class Index extends React.Component<MainAppProps, MainAppState> {
         this.setState({ todoTitle })
     }
 
+    /**
+     * review
+     * any затайпить бы :)
+     */
     handleSubmitTodo = (todo: any) => {
         this.props.addTodo(todo)
     }
 
     render() {
         const { todoTitle } = this.state;
+        /**
+         * review
+         * по мне так window.allTodosIsDone тут не оправдано, можно было использовать локальный стейт
+         */
         window.allTodosIsDone = true;
 
         this.props.todos.map(t => {
@@ -56,7 +79,12 @@ class Index extends React.Component<MainAppProps, MainAppState> {
                         {t.title}
                         <UserSelect user={t.user} idx={idx}/>
                         <Form.Check
+                            /* возможно лучше вынести в класс */
                             style={{ marginTop: -8, marginLeft: 5 }}
+                            /*
+                            пропсы в ряд читабельнее
+                            Этого монстра из onChange вынести в метод
+                            */
                             type="checkbox" checked={t.isDone} onChange={(e) => {
                             const changedTodos = this.props.todos.map((t, index) => {
                                 const res = { ...t }
@@ -77,6 +105,9 @@ class Index extends React.Component<MainAppProps, MainAppState> {
     }
 }
 
+/**
+ * Про any много где писал  :)
+ */
 export default connect(
     (state) => ({}),
     (dispatch) => ({
